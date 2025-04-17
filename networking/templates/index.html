@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        li {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>App List</h1>
+    <ul>
+        {% for app in apps %}
+            <li>{{ app.app_name }} - {{ app.version }} - {{ app.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add New App</h2>
+    <form action="/add" method="POST">
+        <label for="app_name">App Name:</label>
+        <input type="text" id="app_name" name="app_name" required>
+        
+        <label for="version">Version:</label>
+        <input type="text" id="version" name="version">
+        
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description">
+        
+        <button type="submit">Add App</button>
+    </form>
+</body>
+</html>
